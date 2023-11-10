@@ -1,15 +1,17 @@
 #include <iostream>
+#include <locale.h
 
 using namespace std;
+setlocale(LC_ALL, "Russian");
 
 struct Matrix {
 	int** data_ = nullptr;
-	size_t n_ = 0u; //ñòðîêè
-	size_t m_ = 0u; //ñòîëáöû
+	size_t n_ = 0u; //Ã±Ã²Ã°Ã®ÃªÃ¨
+	size_t m_ = 0u; //Ã±Ã²Ã®Ã«Ã¡Ã¶Ã»
 };
 
 
-//Ñîçäàíèå ìàòðèöû èç 0
+//Ã‘Ã®Ã§Ã¤Ã Ã­Ã¨Ã¥ Ã¬Ã Ã²Ã°Ã¨Ã¶Ã» Ã¨Ã§ 0
 void Construct(Matrix& out, size_t n, size_t m) {
 	out.n_ = n;
 	out.m_ = m;
@@ -25,7 +27,7 @@ void Construct(Matrix& out, size_t n, size_t m) {
 	return;
 }
 
-//Îñâîáîæäåíèå ïàìÿòè
+//ÃŽÃ±Ã¢Ã®Ã¡Ã®Ã¦Ã¤Ã¥Ã­Ã¨Ã¥ Ã¯Ã Ã¬Ã¿Ã²Ã¨
 void Distruct(Matrix& in) {
 	for (size_t i = 0; i < in.n_; ++i) {
 		delete in.data_[i];
@@ -33,7 +35,7 @@ void Distruct(Matrix& in) {
 	return;
 }
 
-//Ñîçäàåì êîïèþ ìàòðèöû
+//Ã‘Ã®Ã§Ã¤Ã Ã¥Ã¬ ÃªÃ®Ã¯Ã¨Ã¾ Ã¬Ã Ã²Ã°Ã¨Ã¶Ã»
 Matrix Copy(const Matrix& matrix) {
 
 	Matrix matrix_copy;
@@ -46,7 +48,7 @@ Matrix Copy(const Matrix& matrix) {
 	return matrix_copy;
 }
 
-//Ñóììà äâóõ ìàòðèö
+//Ã‘Ã³Ã¬Ã¬Ã  Ã¤Ã¢Ã³Ãµ Ã¬Ã Ã²Ã°Ã¨Ã¶
 
 Matrix Add(const Matrix& a, const Matrix& b) {
 	if (a.n_ == b.n_ and a.m_ == b.m_) {
@@ -64,7 +66,7 @@ Matrix Add(const Matrix& a, const Matrix& b) {
 	}
 }
 
-//Ðàçíîñòü ìàòðèö
+//ÃÃ Ã§Ã­Ã®Ã±Ã²Ã¼ Ã¬Ã Ã²Ã°Ã¨Ã¶
 Matrix Sub(const Matrix& a, const Matrix& b) {
 	if (a.n_ == b.n_ and a.m_ == b.m_) {
 		Matrix submat;
@@ -80,7 +82,7 @@ Matrix Sub(const Matrix& a, const Matrix& b) {
 		return Matrix();
 	}
 }
-//Ïðîèçâåäåíèå äâóõ ìàòðèö (à*b)
+//ÃÃ°Ã®Ã¨Ã§Ã¢Ã¥Ã¤Ã¥Ã­Ã¨Ã¥ Ã¤Ã¢Ã³Ãµ Ã¬Ã Ã²Ã°Ã¨Ã¶ (Ã *b)
 Matrix Mult(const Matrix& a, const Matrix& b) {
 	if (a.m_ == b.n_) {
 		Matrix c;
@@ -95,7 +97,7 @@ Matrix Mult(const Matrix& a, const Matrix& b) {
 	}
 }
 
-//Òðàíñïîíèðîâàíèå
+//Ã’Ã°Ã Ã­Ã±Ã¯Ã®Ã­Ã¨Ã°Ã®Ã¢Ã Ã­Ã¨Ã¥
 
 void Transposition(Matrix& matrix) {
 	Matrix mat;
