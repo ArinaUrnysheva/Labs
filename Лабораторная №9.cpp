@@ -1,17 +1,17 @@
 #include <iostream>
-#include <locale.h
+#include <locale.h>
 
 using namespace std;
 setlocale(LC_ALL, "Russian");
 
 struct Matrix {
 	int** data_ = nullptr;
-	size_t n_ = 0u; //ñòðîêè
-	size_t m_ = 0u; //ñòîëáöû
+	size_t n_ = 0u; //строки
+	size_t m_ = 0u; //столбцы
 };
 
 
-//Ñîçäàíèå ìàòðèöû èç 0
+//Создание матрицы из 0
 void Construct(Matrix& out, size_t n, size_t m) {
 	out.n_ = n;
 	out.m_ = m;
@@ -27,7 +27,7 @@ void Construct(Matrix& out, size_t n, size_t m) {
 	return;
 }
 
-//Îñâîáîæäåíèå ïàìÿòè
+//Освобождение памяти
 void Distruct(Matrix& in) {
 	for (size_t i = 0; i < in.n_; ++i) {
 		delete in.data_[i];
@@ -35,7 +35,7 @@ void Distruct(Matrix& in) {
 	return;
 }
 
-//Ñîçäàåì êîïèþ ìàòðèöû
+//Создаем копию матрицы
 Matrix Copy(const Matrix& matrix) {
 
 	Matrix matrix_copy;
@@ -48,7 +48,7 @@ Matrix Copy(const Matrix& matrix) {
 	return matrix_copy;
 }
 
-//Ñóììà äâóõ ìàòðèö
+//Сумма двух матриц
 
 Matrix Add(const Matrix& a, const Matrix& b) {
 	if (a.n_ == b.n_ and a.m_ == b.m_) {
@@ -66,7 +66,7 @@ Matrix Add(const Matrix& a, const Matrix& b) {
 	}
 }
 
-//Ðàçíîñòü ìàòðèö
+//Разность матриц
 Matrix Sub(const Matrix& a, const Matrix& b) {
 	if (a.n_ == b.n_ and a.m_ == b.m_) {
 		Matrix submat;
@@ -82,7 +82,7 @@ Matrix Sub(const Matrix& a, const Matrix& b) {
 		return Matrix();
 	}
 }
-//Ïðîèçâåäåíèå äâóõ ìàòðèö (à*b)
+//Произведение двух матриц (а*b)
 Matrix Mult(const Matrix& a, const Matrix& b) {
 	if (a.m_ == b.n_) {
 		Matrix c;
@@ -97,7 +97,7 @@ Matrix Mult(const Matrix& a, const Matrix& b) {
 	}
 }
 
-//Òðàíñïîíèðîâàíèå
+//Транспонирование
 
 void Transposition(Matrix& matrix) {
 	Matrix mat;
